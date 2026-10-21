@@ -49,7 +49,7 @@ export default function StudentDetailPage() {
       <PageHeader
         title={`${data.full_name}`}
         description={`${data.roll_number} - ${data.department_name}`}
-        breadcrumbs="Student directory"
+        breadcrumbs={['Placement cell', 'Student directory', data.full_name]}
         actions={
           <>
             <Link to="/admin/students">
