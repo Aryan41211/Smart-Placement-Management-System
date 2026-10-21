@@ -552,6 +552,19 @@ class Command(BaseCommand):
                         "status_changed_at": timezone.now(),
                     },
                 )
+                # Every application must carry the opening history row, exactly
+                # as `submit_application` writes it. Doing this unconditionally
+                # also backfills rows produced by an older revision of this
+                # command, so the demo trail is never missing its first entry.
+                ApplicationStatusHistory.objects.get_or_create(
+                    application=application,
+                    from_status="",
+                    to_status=Application.Status.APPLIED,
+                    defaults={
+                        "changed_by_role": "student",
+                        "reason": "Application submitted",
+                    },
+                )
                 if not created:
                     continue
                 self._apply_status_chain(application, target_status, student)
