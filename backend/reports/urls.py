@@ -20,6 +20,6 @@ urlpatterns = [
     path("reports/export/applications/", views.ExportView.as_view({"get": "export_applications"}), name="export-applications"),
     path("reports/export/companies/", views.ExportView.as_view({"get": "export_companies"}), name="export-companies"),
     path("reports/export/drives/", views.ExportView.as_view({"get": "export_drives"}), name="export-drives"),
-    path("audit-logs/", views.AuditLogViewSet.as_view({"get": "list", "get": "retrieve"}), name="audit-log-list"),
+    path("audit-logs/", views.AuditLogViewSet.as_view({"get": "list"}), name="audit-log-list"),
     path("audit-logs/<int:pk>/", views.AuditLogViewSet.as_view({"get": "retrieve"}), name="audit-log-detail"),
 ]
