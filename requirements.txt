@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------------------
+# Smart Placement Management System - backend dependencies
+# Python 3.12
+# ---------------------------------------------------------------------------
+
+# Web framework
+Django==5.2.4
+djangorestframework==3.16.0
+djangorestframework-simplejwt==5.5.1
+django-filter==25.1
+django-cors-headers==4.7.0
+
+# MySQL driver (mysqlclient) - requires MySQL client libraries on Windows
+mysqlclient==2.2.7
+
+# Configuration
+python-dotenv==1.1.1
+
+# Testing
+pytest==8.3.5
+pytest-django==4.11.1
