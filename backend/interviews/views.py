@@ -40,6 +40,7 @@ class InterviewRoundViewSet(viewsets.ModelViewSet):
     """Manage the ordered interview rounds of a placement drive."""
 
     permission_classes = [IsAuthenticated]
+    serializer_class = InterviewRoundSerializer
     filterset_fields = ["job_drive", "is_active"]
     ordering_fields = ["sequence", "created_at"]
     ordering = ["job_drive", "sequence"]
