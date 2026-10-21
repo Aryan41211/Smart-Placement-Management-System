@@ -73,7 +73,7 @@ class Application(TimeStampedModel):
                 fields=["student", "job_drive"], name="uniq_student_drive_application"
             ),
             models.CheckConstraint(
-                check=models.Q(offer_package__isnull=True) | models.Q(offer_package__gte=0),
+                condition=models.Q(offer_package__isnull=True) | models.Q(offer_package__gte=0),
                 name="application_offer_package_non_negative",
             ),
         ]
