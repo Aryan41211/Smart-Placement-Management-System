@@ -128,6 +128,11 @@ class JobDrive(TimeStampedModel):
     max_graduation_year = models.PositiveIntegerField(null=True, blank=True)
     application_deadline = models.DateTimeField(db_index=True)
     published_at = models.DateTimeField(null=True, blank=True)
+    submitted_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Set when a recruiter submits a draft for placement-cell approval.",
+    )
     status = models.CharField(
         max_length=16, choices=Status.choices, default=Status.DRAFT, db_index=True
     )
