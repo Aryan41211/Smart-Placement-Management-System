@@ -1,4 +1,7 @@
 import { forwardRef } from 'react';
+import { ChevronDown } from 'lucide-react';
+
+const ERROR_FIELD = 'border-rose-300 focus:border-rose-500 focus:ring-rose-100';
 
 /**
  * Labelled text input.
@@ -6,7 +9,7 @@ import { forwardRef } from 'react';
  * @param {object} props component props
  */
 export const Input = forwardRef(function Input(
-  { label, error, hint, className = '', id, ...rest },
+  { label, error, hint, className = '', id, leadingIcon: LeadingIcon, ...rest },
   ref,
 ) {
   const inputId = id || rest.name;
@@ -17,17 +20,25 @@ export const Input = forwardRef(function Input(
           {label}
         </label>
       )}
-      <input
-        ref={ref}
-        id={inputId}
-        className={`input-base ${error ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-100' : ''}`}
-        aria-invalid={error ? 'true' : 'false'}
-        aria-describedby={error && inputId ? `${inputId}-error` : undefined}
-        {...rest}
-      />
-      {hint && !error && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
+      <div className="relative">
+        {LeadingIcon && (
+          <LeadingIcon
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400"
+            aria-hidden="true"
+          />
+        )}
+        <input
+          ref={ref}
+          id={inputId}
+          className={`input-base ${LeadingIcon ? 'pl-9' : ''} ${error ? ERROR_FIELD : ''}`}
+          aria-invalid={error ? 'true' : 'false'}
+          aria-describedby={error && inputId ? `${inputId}-error` : undefined}
+          {...rest}
+        />
+      </div>
+      {hint && !error && <p className="mt-1 text-xs text-navy-500">{hint}</p>}
       {error && (
-        <p id={inputId ? `${inputId}-error` : undefined} className="mt-1 text-xs text-rose-600">
+        <p id={inputId ? `${inputId}-error` : undefined} className="mt-1 text-xs font-medium text-rose-600">
           {error}
         </p>
       )}
@@ -36,7 +47,7 @@ export const Input = forwardRef(function Input(
 });
 
 /**
- * Labelled select element.
+ * Labelled select element with a consistent chevron affordance.
  *
  * @param {object} props component props
  */
@@ -52,17 +63,23 @@ export const Select = forwardRef(function Select(
           {label}
         </label>
       )}
-      <select
-        ref={ref}
-        id={selectId}
-        className={`input-base ${error ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-100' : ''}`}
-        aria-invalid={error ? 'true' : 'false'}
-        {...rest}
-      >
-        {children}
-      </select>
-      {hint && !error && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
-      {error && <p className="mt-1 text-xs text-rose-600">{error}</p>}
+      <div className="relative">
+        <select
+          ref={ref}
+          id={selectId}
+          className={`input-base appearance-none pr-9 ${error ? ERROR_FIELD : ''}`}
+          aria-invalid={error ? 'true' : 'false'}
+          {...rest}
+        >
+          {children}
+        </select>
+        <ChevronDown
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400"
+          aria-hidden="true"
+        />
+      </div>
+      {hint && !error && <p className="mt-1 text-xs text-navy-500">{hint}</p>}
+      {error && <p className="mt-1 text-xs font-medium text-rose-600">{error}</p>}
     </div>
   );
 });
@@ -88,12 +105,12 @@ export const Textarea = forwardRef(function Textarea(
         ref={ref}
         id={areaId}
         rows={rows}
-        className={`input-base ${error ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-100' : ''}`}
+        className={`input-base resize-y ${error ? ERROR_FIELD : ''}`}
         aria-invalid={error ? 'true' : 'false'}
         {...rest}
       />
-      {hint && !error && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
-      {error && <p className="mt-1 text-xs text-rose-600">{error}</p>}
+      {hint && !error && <p className="mt-1 text-xs text-navy-500">{hint}</p>}
+      {error && <p className="mt-1 text-xs font-medium text-rose-600">{error}</p>}
     </div>
   );
 });
@@ -108,12 +125,12 @@ export function Checkbox({ label, className = '', id, ...rest }) {
   return (
     <label
       htmlFor={checkboxId}
-      className={`inline-flex cursor-pointer items-center gap-2 text-sm text-slate-700 ${className}`}
+      className={`inline-flex cursor-pointer select-none items-center gap-2 text-sm text-navy-700 ${className}`}
     >
       <input
         id={checkboxId}
         type="checkbox"
-        className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+        className="h-4 w-4 rounded border-navy-300 text-brand-600 transition focus:ring-2 focus:ring-brand-400"
         {...rest}
       />
       {label}

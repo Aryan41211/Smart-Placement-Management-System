@@ -5,15 +5,27 @@ import { Inbox } from 'lucide-react';
  *
  * @param {object} props component props
  */
-export default function EmptyState({ title = 'Nothing to show yet', description, icon: Icon = Inbox, action }) {
+export default function EmptyState({
+  title = 'Nothing to show yet',
+  description,
+  icon: Icon = Inbox,
+  action,
+  compact = false,
+}) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 px-6 py-12 text-center">
-      <span className="rounded-full bg-slate-100 p-3 text-slate-400">
+    <div
+      className={`flex flex-col items-center justify-center gap-2 text-center ${
+        compact ? 'px-6 py-8' : 'px-6 py-14'
+      }`}
+    >
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-navy-400 ring-1 ring-inset ring-navy-100">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </span>
-      <h3 className="text-sm font-semibold text-slate-800">{title}</h3>
-      {description && <p className="max-w-md text-sm text-slate-500">{description}</p>}
-      {action}
+      <h3 className="mt-1 text-sm font-semibold text-navy-800">{title}</h3>
+      {description && (
+        <p className="max-w-sm text-[0.8125rem] leading-relaxed text-navy-500">{description}</p>
+      )}
+      {action && <div className="mt-2">{action}</div>}
     </div>
   );
 }

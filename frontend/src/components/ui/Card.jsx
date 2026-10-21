@@ -1,11 +1,14 @@
 /**
  * Surface primitives used across the application.
  *
+ * Every page in the product composes these three pieces, which is what keeps
+ * spacing, borders and shadows identical from the dashboard to a modal.
+ *
  * @param {object} props component props
  */
-export function Card({ className = '', children, ...rest }) {
+export function Card({ className = '', children, interactive = false, ...rest }) {
   return (
-    <div className={`card ${className}`} {...rest}>
+    <div className={`card ${interactive ? 'card-interactive' : ''} ${className}`} {...rest}>
       {children}
     </div>
   );
@@ -16,16 +19,29 @@ export function Card({ className = '', children, ...rest }) {
  *
  * @param {object} props component props
  */
-export function CardHeader({ title, description, action, className = '' }) {
+export function CardHeader({
+  title,
+  description,
+  action,
+  icon: Icon,
+  eyebrow,
+  className = '',
+}) {
   return (
-    <div
-      className={`flex flex-wrap items-start justify-between gap-3 border-b border-slate-200 px-5 py-4 ${className}`}
-    >
-      <div>
-        <h2 className="text-base font-semibold text-slate-900">{title}</h2>
-        {description && <p className="mt-0.5 text-sm text-slate-500">{description}</p>}
+    <div className={`card-header ${className}`}>
+      <div className="flex min-w-0 items-start gap-3">
+        {Icon && (
+          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+            <Icon className="h-4 w-4" aria-hidden="true" />
+          </span>
+        )}
+        <div className="min-w-0">
+          {eyebrow && <p className="eyebrow mb-1">{eyebrow}</p>}
+          <h2 className="truncate text-[0.9375rem] font-semibold text-navy-900">{title}</h2>
+          {description && <p className="mt-0.5 text-[0.8125rem] leading-relaxed text-navy-500">{description}</p>}
+        </div>
       </div>
-      {action}
+      {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
     </div>
   );
 }
@@ -36,7 +52,7 @@ export function CardHeader({ title, description, action, className = '' }) {
  * @param {object} props component props
  */
 export function CardBody({ className = '', children }) {
-  return <div className={`px-5 py-4 ${className}`}>{children}</div>;
+  return <div className={`card-body ${className}`}>{children}</div>;
 }
 
 /**
@@ -46,7 +62,9 @@ export function CardBody({ className = '', children }) {
  */
 export function CardFooter({ className = '', children }) {
   return (
-    <div className={`border-t border-slate-200 px-5 py-3 ${className}`}>{children}</div>
+    <div className={`border-t border-[var(--app-border)] bg-navy-50/40 px-5 py-3 ${className}`}>
+      {children}
+    </div>
   );
 }
 
