@@ -16,6 +16,7 @@ from core.permissions import IsAdmin
 from placements.models import JobDrive
 from reports import services
 from reports.csv import csv_response
+from reports.serializers import AuditLogSerializer
 
 
 class DashboardView(viewsets.ViewSet):
@@ -125,7 +126,7 @@ class AuditLogViewSet(viewsets.ReadOnlyModelViewSet):
     """``/api/v1/audit-logs/`` - the administrative audit trail."""
 
     permission_classes = [IsAuthenticated, IsAdmin]
-    serializer_class = None
+    serializer_class = AuditLogSerializer
     filterset_fields = ["action", "entity_type"]
     ordering_fields = ["created_at"]
     ordering = ["-created_at"]
@@ -134,28 +135,6 @@ class AuditLogViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         """Return the audit trail."""
         return AuditLog.objects.select_related("actor")
-
-    def list(self, request, *args, **kwargs):
-        """Return a paginated list of audit entries."""
-        queryset = self.filter_queryset(self.get_queryset())
-        page = self.paginate_queryset(queryset)
-        data = [
-            {
-                "id": entry.id,
-                "actor_email": entry.actor_email,
-                "action": entry.action,
-                "entity_type": entry.entity_type,
-                "entity_id": entry.entity_id,
-                "description": entry.description,
-                "metadata": entry.metadata,
-                "ip_address": entry.ip_address,
-                "created_at": entry.created_at.isoformat(),
-            }
-            for entry in (page if page is not None else queryset)
-        ]
-        if page is not None:
-            return self.get_paginated_response(data)
-        return Response(data, status=status.HTTP_200_OK)
 
 
 class ExportView(viewsets.ViewSet):
