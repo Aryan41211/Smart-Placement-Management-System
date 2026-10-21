@@ -56,6 +56,36 @@ def test_students_cannot_create_a_drive(student_client, company):
     assert response.status_code == 403
 
 
+def test_students_cannot_create_a_company(student_client):
+    """Company records are maintained by the placement cell."""
+    response = student_client.post(
+        "/api/v1/companies/",
+        {"name": "Shadow Corp", "industry": "it_services"},
+        format="json",
+    )
+    assert response.status_code == 403
+
+
+def test_recruiters_cannot_update_a_company(recruiter_client, company):
+    """Only placement officers may edit company records."""
+    response = recruiter_client.patch(
+        f"/api/v1/companies/{company.pk}/",
+        {"location": "Renamed"},
+        format="json",
+    )
+    assert response.status_code == 403
+
+
+def test_admin_can_create_a_company(auth_client):
+    """Placement officers maintain the company directory."""
+    response = auth_client.post(
+        "/api/v1/companies/",
+        {"name": "Fresh Systems", "industry": "it"},
+        format="json",
+    )
+    assert response.status_code == 201, response.data
+
+
 def test_recruiter_cannot_publish_a_drive(recruiter_client, job_drive):
     """Publication is a placement-officer action."""
     response = recruiter_client.post(f"/api/v1/drives/{job_drive.pk}/publish/")
