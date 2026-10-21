@@ -11,7 +11,7 @@ from rest_framework.response import Response
 
 from accounts.models import StudentProfile
 from core.audit import record_audit
-from core.permissions import IsAdmin
+from core.permissions import IsAdmin, IsAdminOrRecruiter
 from placements.models import JobDrive
 from placements.serializers import JobDriveSerializer, JobDriveWriteSerializer
 from placements.services import evaluate_eligibility
@@ -56,6 +56,12 @@ class JobDriveViewSet(viewsets.ModelViewSet):
         if self.action in {"create", "update", "partial_update"}:
             return JobDriveWriteSerializer
         return JobDriveSerializer
+
+    def get_permissions(self):
+        """Only placement officers and recruiters may create or edit drives."""
+        if self.action in {"create", "update", "partial_update", "destroy"}:
+            return [IsAuthenticated(), IsAdminOrRecruiter()]
+        return super().get_permissions()
 
     # -- permissions --------------------------------------------------------
     def _is_owning_recruiter(self, obj) -> bool:
