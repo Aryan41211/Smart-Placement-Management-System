@@ -49,3 +49,5 @@ export function CardFooter({ className = '', children }) {
     <div className={`border-t border-slate-200 px-5 py-3 ${className}`}>{children}</div>
   );
 }
+
+export default Card;
