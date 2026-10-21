@@ -2,50 +2,145 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Design tokens
+   A single, small set of primitives that every component is built from.
+   ========================================================================== */
 @layer base {
+  :root {
+    --app-bg: #f6f7fb;
+    --app-surface: #ffffff;
+    --app-border: #e6e9f0;
+    --app-ring: rgb(92 96 233 / 0.18);
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-slate-100 text-slate-800 antialiased;
+    @apply bg-[var(--app-bg)] font-sans text-[0.9375rem] leading-relaxed text-navy-800 antialiased;
   }
 
+  /* Focus rings are brand tinted so keyboard focus is obvious but not loud. */
   :focus-visible {
     @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white;
   }
-}
 
-@layer components {
-  .card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-card;
+  /* Headings never inherit a default bold weight - the scale is explicit. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight text-navy-900;
   }
 
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+}
+
+/* ==========================================================================
+   Component layer
+   ========================================================================== */
+@layer components {
+  /* --- Surfaces ------------------------------------------------------- */
+  .card {
+    @apply rounded-xl border border-[var(--app-border)] bg-[var(--app-surface)] shadow-card;
+  }
+
+  .card-interactive {
+    @apply transition duration-200 ease-smooth hover:border-brand-200 hover:shadow-card-hover;
+  }
+
+  .card-header {
+    @apply flex flex-wrap items-start justify-between gap-3 border-b border-[var(--app-border)] px-5 py-4;
+  }
+
+  .card-body {
+    @apply px-5 py-5;
+  }
+
+  /* --- Forms ----------------------------------------------------------- */
   .input-base {
-    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800
-      placeholder:text-slate-400 transition focus:border-brand-500 focus:outline-none
-      focus:ring-2 focus:ring-brand-100 disabled:cursor-not-allowed disabled:bg-slate-100;
+    @apply w-full rounded-lg border border-navy-200 bg-white px-3 py-2 text-sm text-navy-900
+      placeholder:text-navy-300 transition duration-150 ease-smooth
+      focus:border-brand-500 focus:outline-none focus:ring-[3px] focus:ring-brand-100
+      disabled:cursor-not-allowed disabled:bg-navy-50 disabled:text-navy-400;
+  }
+
+  .input-base-sm {
+    @apply py-1.5 text-[0.8125rem];
   }
 
   .label-base {
-    @apply mb-1.5 block text-sm font-medium text-slate-700;
+    @apply mb-1.5 block text-[0.8125rem] font-medium text-navy-700;
   }
 
   .link-base {
-    @apply text-brand-600 underline-offset-2 hover:underline;
+    @apply font-medium text-brand-700 underline-offset-4 transition hover:text-brand-800 hover:underline;
+  }
+
+  /* --- Tables ---------------------------------------------------------- */
+  .table-head {
+    @apply bg-navy-50/70 text-2xs font-semibold uppercase tracking-[0.08em] text-navy-500;
+  }
+
+  .table-row {
+    @apply transition-colors duration-150 hover:bg-navy-50/60;
+  }
+
+  /* --- Misc ------------------------------------------------------------ */
+  .eyebrow {
+    @apply text-2xs font-semibold uppercase tracking-[0.12em] text-navy-400;
+  }
+
+  .divider {
+    @apply h-px w-full bg-[var(--app-border)];
   }
 }
 
-/* Slim scrollbars keep the dense data tables readable. */
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+@layer utilities {
+  /* Slim scrollbars keep the dense data tables readable. */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.navy.200') transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 *::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-slate-300;
+  @apply rounded-full bg-navy-200;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  @apply bg-navy-300;
 }
 
 *::-webkit-scrollbar-track {
   @apply bg-transparent;
+}
+
+/* Respect the operating system's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
