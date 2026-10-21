@@ -42,6 +42,17 @@ class IsRecruiter(BasePermission):
         return bool(user and user.is_authenticated and user.is_recruiter)
 
 
+class IsAdminOrRecruiter(BasePermission):
+    """Allow placement officers and recruiters, but never students."""
+
+    message = "Only placement officers and recruiters can perform this action."
+
+    def has_permission(self, request, view) -> bool:
+        """True when the caller is an administrator or a recruiter."""
+        user = request.user
+        return bool(user and user.is_authenticated and (user.is_admin or user.is_recruiter))
+
+
 class IsAdminOrReadOnly(BasePermission):
     """Everyone authenticated may read; only administrators may write."""
 
