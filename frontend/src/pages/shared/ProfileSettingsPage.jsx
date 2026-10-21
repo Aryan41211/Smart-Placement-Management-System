@@ -55,28 +55,28 @@ export default function ProfileSettingsPage() {
                 <UserCircle className="h-7 w-7" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-lg font-semibold text-slate-900">{user?.full_name}</p>
-                <p className="text-sm text-slate-500">{user?.email}</p>
+                <p className="text-lg font-semibold text-navy-900">{user?.full_name}</p>
+                <p className="text-sm text-navy-500">{user?.email}</p>
               </div>
             </div>
 
             <dl className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Role</dt>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Role</dt>
                 <dd className="mt-1">
                   <Badge variant="brand">{role}</Badge>
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Member since</dt>
-                <dd className="mt-1 text-slate-700">{formatDate(user?.date_joined)}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Member since</dt>
+                <dd className="mt-1 text-navy-700">{formatDate(user?.date_joined)}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Phone</dt>
-                <dd className="mt-1 text-slate-700">{user?.phone || '—'}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Phone</dt>
+                <dd className="mt-1 text-navy-700">{user?.phone || '—'}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Status</dt>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Status</dt>
                 <dd className="mt-1">
                   <Badge variant="success">Active</Badge>
                 </dd>
@@ -84,12 +84,12 @@ export default function ProfileSettingsPage() {
             </dl>
 
             {user?.student_profile && (
-              <div className="rounded-lg bg-slate-50 p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-slate-700">
+              <div className="rounded-lg bg-navy-50 p-4">
+                <p className="flex items-center gap-2 text-sm font-medium text-navy-700">
                   <ShieldCheck className="h-4 w-4 text-brand-600" aria-hidden="true" />
                   Student record
                 </p>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm text-navy-600">
                   Roll number {user.student_profile.roll_number} &middot;{' '}
                   {user.student_profile.department_name} &middot; CGPA{' '}
                   {user.student_profile.cgpa} &middot; {user.student_profile.active_backlogs} backlog(s)
@@ -98,12 +98,12 @@ export default function ProfileSettingsPage() {
             )}
 
             {user?.recruiter_profile && (
-              <div className="rounded-lg bg-slate-50 p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-slate-700">
+              <div className="rounded-lg bg-navy-50 p-4">
+                <p className="flex items-center gap-2 text-sm font-medium text-navy-700">
                   <ShieldCheck className="h-4 w-4 text-brand-600" aria-hidden="true" />
                   Recruiter authorisation
                 </p>
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm text-navy-600">
                   {user.recruiter_profile.company_name || 'No company assigned'} &middot;{' '}
                   {user.recruiter_profile.is_authorized ? 'Authorised' : 'Not authorised'}
                 </p>

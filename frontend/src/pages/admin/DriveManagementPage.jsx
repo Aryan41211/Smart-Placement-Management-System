@@ -263,9 +263,9 @@ export default function DriveManagementPage() {
             >
               {rows.map((drive) => (
                 <Tr key={drive.id}>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-medium text-navy-900">
                     {drive.title}
-                    <span className="block text-xs font-normal text-slate-400">
+                    <span className="block text-xs font-normal text-navy-400">
                       {drive.company_name} &middot; {drive.role_designation}
                     </span>
                   </Td>
@@ -273,10 +273,10 @@ export default function DriveManagementPage() {
                     {formatCurrency(drive.package_min, { compact: true })} -{' '}
                     {formatCurrency(drive.package_max, { compact: true })}
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(drive.application_deadline)}
                   </Td>
-                  <Td className="text-xs text-slate-500">
+                  <Td className="text-xs text-navy-500">
                     CGPA {drive.min_cgpa ?? 'any'} &middot; Backlogs{' '}
                     {drive.max_active_backlogs ?? 'any'}
                   </Td>
@@ -428,8 +428,8 @@ export default function DriveManagementPage() {
             onChange={(event) => setForm({ ...form, description: event.target.value })}
           />
 
-          <fieldset className="rounded-lg border border-slate-200 p-4">
-            <legend className="px-1 text-sm font-semibold text-slate-700">
+          <fieldset className="rounded-lg border border-navy-200 p-4">
+            <legend className="px-1 text-sm font-semibold text-navy-700">
               Eligibility criteria
             </legend>
             <div className="grid gap-4 sm:grid-cols-4">
@@ -463,19 +463,19 @@ export default function DriveManagementPage() {
               />
             </div>
 
-            <p className="mt-4 text-sm font-medium text-slate-700">Allowed departments</p>
-            <p className="text-xs text-slate-500">
+            <p className="mt-4 text-sm font-medium text-navy-700">Allowed departments</p>
+            <p className="text-xs text-navy-500">
               Leave all unchecked to open the drive to every department.
             </p>
             <div className="mt-2 grid gap-2 sm:grid-cols-3">
               {departmentOptions.map((department) => (
                 <label
                   key={department.id}
-                  className="inline-flex items-center gap-2 text-sm text-slate-700"
+                  className="inline-flex items-center gap-2 text-sm text-navy-700"
                 >
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                    className="h-4 w-4 rounded border-navy-300 text-brand-600 focus:ring-brand-500"
                     checked={selectedDepartments.includes(department.id)}
                     onChange={(event) =>
                       setSelectedDepartments((current) =>
@@ -490,19 +490,19 @@ export default function DriveManagementPage() {
               ))}
             </div>
 
-            <p className="mt-4 text-sm font-medium text-slate-700">Required skills</p>
-            <p className="text-xs text-slate-500">
+            <p className="mt-4 text-sm font-medium text-navy-700">Required skills</p>
+            <p className="text-xs text-navy-500">
               The eligibility engine checks that the student lists each required skill.
             </p>
             <div className="mt-2 grid gap-2 sm:grid-cols-3">
               {skillOptions.map((skill) => (
                 <label
                   key={skill.id}
-                  className="inline-flex items-center gap-2 text-sm text-slate-700"
+                  className="inline-flex items-center gap-2 text-sm text-navy-700"
                 >
                   <input
                     type="checkbox"
-                    className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                    className="h-4 w-4 rounded border-navy-300 text-brand-600 focus:ring-brand-500"
                     checked={selectedSkills.includes(skill.id)}
                     onChange={(event) =>
                       setSelectedSkills((current) =>
@@ -526,7 +526,7 @@ export default function DriveManagementPage() {
           />
 
           {editing && (
-            <div className="flex items-center gap-2 rounded-lg bg-slate-50 px-4 py-3 text-xs text-slate-500">
+            <div className="flex items-center gap-2 rounded-lg bg-navy-50 px-4 py-3 text-xs text-navy-500">
               <Badge variant="neutral">Current status</Badge>
               <StatusBadge status={editing.status} />
             </div>

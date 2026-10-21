@@ -174,15 +174,15 @@ export default function RecruiterApplicantsPage() {
             >
               {rows.map((application) => (
                 <Tr key={application.id}>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-medium text-navy-900">
                     {application.student_name}
-                    <span className="block font-mono text-xs font-normal text-slate-400">
+                    <span className="block font-mono text-xs font-normal text-navy-400">
                       {application.student_roll_number}
                     </span>
                   </Td>
                   <Td>
                     {application.job_drive_title}
-                    <span className="block text-xs text-slate-400">
+                    <span className="block text-xs text-navy-400">
                       {application.student_department}
                     </span>
                   </Td>
@@ -191,7 +191,7 @@ export default function RecruiterApplicantsPage() {
                   <Td>
                     <StatusBadge status={application.status} />
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(application.applied_at)}
                   </Td>
                   <Td className="text-right">
@@ -256,28 +256,28 @@ export default function RecruiterApplicantsPage() {
           <div className="space-y-5">
             <dl className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Roll number</dt>
-                <dd className="mt-1 font-mono text-slate-700">{detail.student_roll_number}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Roll number</dt>
+                <dd className="mt-1 font-mono text-navy-700">{detail.student_roll_number}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">CGPA</dt>
-                <dd className="mt-1 text-slate-700">{detail.student_cgpa}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">CGPA</dt>
+                <dd className="mt-1 text-navy-700">{detail.student_cgpa}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Status</dt>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Status</dt>
                 <dd className="mt-1">
                   <StatusBadge status={detail.status} />
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Interviews</dt>
-                <dd className="mt-1 text-slate-700">{detail.interview_count}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Interviews</dt>
+                <dd className="mt-1 text-navy-700">{detail.interview_count}</dd>
               </div>
             </dl>
 
             {detail.resume_url && (
               <p className="text-sm">
-                <span className="text-xs uppercase tracking-wide text-slate-400">Resume</span>{' '}
+                <span className="text-xs uppercase tracking-wide text-navy-400">Resume</span>{' '}
                 <a
                   href={detail.resume_url}
                   target="_blank"
@@ -289,12 +289,12 @@ export default function RecruiterApplicantsPage() {
               </p>
             )}
 
-            <div className="rounded-lg bg-slate-50 p-4">
-              <p className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-                <StickyNote className="h-4 w-4 text-slate-400" aria-hidden="true" />
+            <div className="rounded-lg bg-navy-50 p-4">
+              <p className="flex items-center gap-2 text-sm font-semibold text-navy-800">
+                <StickyNote className="h-4 w-4 text-navy-400" aria-hidden="true" />
                 Internal notes
               </p>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-navy-500">
                 Visible to your company and the placement cell only, never to students.
               </p>
               <Textarea
@@ -312,7 +312,7 @@ export default function RecruiterApplicantsPage() {
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-slate-800">Status history</p>
+              <p className="text-sm font-semibold text-navy-800">Status history</p>
               <StatusTimeline entries={history} />
             </div>
           </div>

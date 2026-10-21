@@ -103,12 +103,12 @@ export default function NotificationsPage() {
       />
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <label className="inline-flex items-center gap-2 text-sm text-slate-600">
+        <label className="inline-flex items-center gap-2 text-sm text-navy-600">
           <input
             type="checkbox"
             checked={unreadOnly}
             onChange={(event) => setUnreadOnly(event.target.checked)}
-            className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+            className="h-4 w-4 rounded border-navy-300 text-brand-600 focus:ring-brand-500"
           />
           Show unread only
         </label>
@@ -127,7 +127,7 @@ export default function NotificationsPage() {
               description="You will be notified here when an application moves forward or a drive is published."
             />
           ) : (
-            <ul className="divide-y divide-slate-100">
+            <ul className="divide-y divide-navy-100">
               {notifications.map((item) => (
                 <li
                   key={item.id}
@@ -138,12 +138,12 @@ export default function NotificationsPage() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="font-medium text-slate-900">{item.title}</p>
+                      <p className="font-medium text-navy-900">{item.title}</p>
                       <Badge variant={KIND_TONES[item.kind] ?? 'neutral'}>{item.kind}</Badge>
                       {!item.is_read && <Badge variant="danger">New</Badge>}
                     </div>
-                    <p className="mt-1 text-sm text-slate-600">{item.message}</p>
-                    <p className="mt-1 text-xs text-slate-400">{formatRelative(item.created_at)}</p>
+                    <p className="mt-1 text-sm text-navy-600">{item.message}</p>
+                    <p className="mt-1 text-xs text-navy-400">{formatRelative(item.created_at)}</p>
                   </div>
                   {!item.is_read && (
                     <Button variant="ghost" size="sm" onClick={() => handleMarkRead(item.id)}>
@@ -206,7 +206,7 @@ export default function NotificationsPage() {
               <option value="drive">Drive</option>
             </Select>
           </div>
-          <CardBody className="rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
+          <CardBody className="rounded-lg bg-navy-50 p-3 text-xs text-navy-500">
             The broadcast is written to the audit trail of the placement cell.
           </CardBody>
         </form>

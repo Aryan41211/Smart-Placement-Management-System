@@ -199,7 +199,7 @@ export default function AdminDashboardPage() {
           description="The latest status changes recorded in the recruitment pipeline."
         />
         {activity.length === 0 ? (
-          <CardBody className="text-sm text-slate-500">No activity recorded yet.</CardBody>
+          <CardBody className="text-sm text-navy-500">No activity recorded yet.</CardBody>
         ) : (
           <Table
             columns={[
@@ -212,23 +212,23 @@ export default function AdminDashboardPage() {
           >
             {activity.map((row) => (
               <Tr key={`${row.application_id}-${row.changed_at}`}>
-                <Td className="font-medium text-slate-900">
+                <Td className="font-medium text-navy-900">
                   {row.student_name}
-                  <span className="block text-xs font-normal text-slate-400">{row.roll_number}</span>
+                  <span className="block text-xs font-normal text-navy-400">{row.roll_number}</span>
                 </Td>
                 <Td>
                   {row.job_drive}
-                  <span className="block text-xs text-slate-400">{row.company}</span>
+                  <span className="block text-xs text-navy-400">{row.company}</span>
                 </Td>
                 <Td>
                   <span className="flex items-center gap-1.5">
                     <StatusBadge status={row.from_status} />
-                    <TrendingUp className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    <TrendingUp className="h-3.5 w-3.5 text-navy-400" aria-hidden="true" />
                     <StatusBadge status={row.to_status} />
                   </span>
                 </Td>
-                <Td className="text-slate-500">{row.changed_by}</Td>
-                <Td className="whitespace-nowrap text-slate-500">{formatDateTime(row.changed_at)}</Td>
+                <Td className="text-navy-500">{row.changed_by}</Td>
+                <Td className="whitespace-nowrap text-navy-500">{formatDateTime(row.changed_at)}</Td>
               </Tr>
             ))}
           </Table>

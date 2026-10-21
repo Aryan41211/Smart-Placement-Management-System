@@ -104,16 +104,16 @@ export default function StudentSkillsPage() {
             >
               {skills.map((skill) => (
                 <Tr key={skill.id}>
-                  <Td className="font-medium text-slate-900">{skill.skill_name}</Td>
+                  <Td className="font-medium text-navy-900">{skill.skill_name}</Td>
                   <Td>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-32 overflow-hidden rounded-full bg-slate-200">
+                      <div className="h-2 w-32 overflow-hidden rounded-full bg-navy-200">
                         <div
                           className="h-full rounded-full bg-brand-500"
                           style={{ width: `${(skill.proficiency_level / 5) * 100}%` }}
                         />
                       </div>
-                      <span className="text-xs text-slate-500">{skill.proficiency_level}/5</span>
+                      <span className="text-xs text-navy-500">{skill.proficiency_level}/5</span>
                     </div>
                   </Td>
                   <Td>
@@ -178,16 +178,16 @@ export default function StudentSkillsPage() {
             onChange={(event) => setForm({ ...form, proficiency_level: event.target.value })}
             hint="1 = beginner, 5 = expert."
           />
-          <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+          <label className="inline-flex items-center gap-2 text-sm text-navy-700">
             <input
               type="checkbox"
               checked={form.is_certified}
               onChange={(event) => setForm({ ...form, is_certified: event.target.checked })}
-              className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+              className="h-4 w-4 rounded border-navy-300 text-brand-600 focus:ring-brand-500"
             />
             I hold a certification for this skill
           </label>
-          <CardBody className="rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
+          <CardBody className="rounded-lg bg-navy-50 p-3 text-xs text-navy-500">
             The proficiency level is stored on the profile and is available to recruiters when they
             review an applicant.
           </CardBody>

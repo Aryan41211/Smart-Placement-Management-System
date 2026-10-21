@@ -150,7 +150,7 @@ export default function RecruiterDashboardPage() {
       <Card className="mt-6">
         <CardHeader title="Your drives" description="Applications and selections per drive." />
         {drives.length === 0 ? (
-          <CardBody className="text-sm text-slate-500">
+          <CardBody className="text-sm text-navy-500">
             You have not created a drive yet.
           </CardBody>
         ) : (
@@ -166,11 +166,11 @@ export default function RecruiterDashboardPage() {
           >
             {drives.map((drive) => (
               <Tr key={drive.drive_id}>
-                <Td className="font-medium text-slate-900">{drive.title}</Td>
+                <Td className="font-medium text-navy-900">{drive.title}</Td>
                 <Td>
                   <StatusBadge status={drive.status} />
                 </Td>
-                <Td className="whitespace-nowrap text-slate-500">{formatDate(drive.deadline)}</Td>
+                <Td className="whitespace-nowrap text-navy-500">{formatDate(drive.deadline)}</Td>
                 <Td>{drive.application_count}</Td>
                 <Td>{drive.shortlisted_count}</Td>
                 <Td>{drive.selected_count}</Td>

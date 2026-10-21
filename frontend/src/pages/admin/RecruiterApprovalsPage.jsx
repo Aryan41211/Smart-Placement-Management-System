@@ -157,14 +157,14 @@ export default function RecruiterApprovalsPage() {
             >
               {rows.map((recruiter) => (
                 <Tr key={recruiter.id}>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-medium text-navy-900">
                     {recruiter.full_name}
-                    <span className="block text-xs font-normal text-slate-400">
+                    <span className="block text-xs font-normal text-navy-400">
                       {recruiter.email}
                     </span>
                   </Td>
                   <Td>{recruiter.company_name}</Td>
-                  <Td className="text-slate-500">{recruiter.designation || '—'}</Td>
+                  <Td className="text-navy-500">{recruiter.designation || '—'}</Td>
                   <Td>
                     {recruiter.can_post_jobs ? (
                       <Badge variant="info">Allowed</Badge>
@@ -179,7 +179,7 @@ export default function RecruiterApprovalsPage() {
                       <Badge variant="warning">Pending</Badge>
                     )}
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDate(recruiter.created_at)}
                   </Td>
                   <Td className="text-right">

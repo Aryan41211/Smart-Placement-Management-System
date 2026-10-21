@@ -175,8 +175,8 @@ export default function ApplicationPipelinePage() {
             aria-label="Minimum CGPA"
           />
         </div>
-        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2">
-          <p className="text-xs text-slate-500">
+        <div className="flex items-center justify-between border-t border-navy-200 px-4 py-2">
+          <p className="text-xs text-navy-500">
             <Filter className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />
             {data?.count ?? 0} application(s) matched
           </p>
@@ -211,24 +211,24 @@ export default function ApplicationPipelinePage() {
             >
               {rows.map((application) => (
                 <Tr key={application.id}>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-medium text-navy-900">
                     {application.student_name}
-                    <span className="block font-mono text-xs font-normal text-slate-400">
+                    <span className="block font-mono text-xs font-normal text-navy-400">
                       {application.student_roll_number}
                     </span>
                   </Td>
                   <Td>
                     {application.job_drive_title}
-                    <span className="block text-xs text-slate-400">
+                    <span className="block text-xs text-navy-400">
                       {application.job_drive_company}
                     </span>
                   </Td>
-                  <Td className="text-slate-500">{application.student_department}</Td>
+                  <Td className="text-navy-500">{application.student_department}</Td>
                   <Td>{application.student_cgpa}</Td>
                   <Td>
                     <StatusBadge status={application.status} />
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(application.applied_at)}
                   </Td>
                   <Td className="text-right">
@@ -293,30 +293,30 @@ export default function ApplicationPipelinePage() {
           <div className="space-y-5">
             <dl className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Roll number</dt>
-                <dd className="mt-1 font-mono text-slate-700">{detail.student_roll_number}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Roll number</dt>
+                <dd className="mt-1 font-mono text-navy-700">{detail.student_roll_number}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Department</dt>
-                <dd className="mt-1 text-slate-700">{detail.student_department}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Department</dt>
+                <dd className="mt-1 text-navy-700">{detail.student_department}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">CGPA</dt>
-                <dd className="mt-1 text-slate-700">{detail.student_cgpa}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">CGPA</dt>
+                <dd className="mt-1 text-navy-700">{detail.student_cgpa}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Active backlogs</dt>
-                <dd className="mt-1 text-slate-700">{detail.student_backlogs}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Active backlogs</dt>
+                <dd className="mt-1 text-navy-700">{detail.student_backlogs}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Status</dt>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Status</dt>
                 <dd className="mt-1">
                   <StatusBadge status={detail.status} />
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Interviews</dt>
-                <dd className="mt-1 text-slate-700">{detail.interview_count}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Interviews</dt>
+                <dd className="mt-1 text-navy-700">{detail.interview_count}</dd>
               </div>
             </dl>
 
@@ -334,26 +334,26 @@ export default function ApplicationPipelinePage() {
             )}
 
             {detail.internal_notes && (
-              <div className="rounded-lg bg-slate-50 px-4 py-3">
-                <p className="text-xs uppercase tracking-wide text-slate-400">
+              <div className="rounded-lg bg-navy-50 px-4 py-3">
+                <p className="text-xs uppercase tracking-wide text-navy-400">
                   Internal notes (recruiters and officers only)
                 </p>
-                <p className="mt-1 text-sm text-slate-700">{detail.internal_notes}</p>
+                <p className="mt-1 text-sm text-navy-700">{detail.internal_notes}</p>
               </div>
             )}
 
             {detail.eligibility_snapshot && Object.keys(detail.eligibility_snapshot).length > 0 && (
               <div>
-                <p className="text-sm font-semibold text-slate-800">Eligibility at submission</p>
+                <p className="text-sm font-semibold text-navy-800">Eligibility at submission</p>
                 <dl className="mt-2 grid grid-cols-2 gap-3 text-sm">
                   {Object.entries(detail.eligibility_snapshot)
                     .filter(([, value]) => value !== null && value !== undefined)
                     .map(([key, value]) => (
-                      <div key={key} className="rounded-lg bg-slate-50 px-3 py-2">
-                        <dt className="text-xs uppercase tracking-wide text-slate-400">
+                      <div key={key} className="rounded-lg bg-navy-50 px-3 py-2">
+                        <dt className="text-xs uppercase tracking-wide text-navy-400">
                           {key.replace(/_/g, ' ')}
                         </dt>
-                        <dd className="mt-0.5 text-slate-700">{String(value)}</dd>
+                        <dd className="mt-0.5 text-navy-700">{String(value)}</dd>
                       </div>
                     ))}
                 </dl>
@@ -361,7 +361,7 @@ export default function ApplicationPipelinePage() {
             )}
 
             <div>
-              <p className="text-sm font-semibold text-slate-800">Status history</p>
+              <p className="text-sm font-semibold text-navy-800">Status history</p>
               <StatusTimeline entries={history} />
             </div>
           </div>

@@ -29,12 +29,12 @@ export default function MyInterviewsPage() {
         title="My interviews"
         description="Rounds scheduled by the recruiting company, with the recorded outcome."
         actions={
-          <label className="inline-flex items-center gap-2 text-sm text-slate-600">
+          <label className="inline-flex items-center gap-2 text-sm text-navy-600">
             <input
               type="checkbox"
               checked={upcomingOnly}
               onChange={(event) => setUpcomingOnly(event.target.checked)}
-              className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+              className="h-4 w-4 rounded border-navy-300 text-brand-600 focus:ring-brand-500"
             />
             Upcoming only
           </label>
@@ -60,24 +60,24 @@ export default function MyInterviewsPage() {
                 <CardBody>
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">{interview.round_name}</p>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm font-semibold text-navy-900">{interview.round_name}</p>
+                      <p className="text-sm text-navy-500">
                         {interview.job_drive_title} &middot; {interview.job_drive_company}
                       </p>
                     </div>
                     <StatusBadge status={interview.status} />
                   </div>
 
-                  <dl className="mt-4 space-y-2 text-sm text-slate-600">
+                  <dl className="mt-4 space-y-2 text-sm text-navy-600">
                     <div className="flex items-center gap-2">
-                      <CalendarClock className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                      <CalendarClock className="h-4 w-4 text-navy-400" aria-hidden="true" />
                       <dd>
                         {formatDateTime(interview.scheduled_at)} &middot;{' '}
                         {interview.duration_minutes} min
                       </dd>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                      <MapPin className="h-4 w-4 text-navy-400" aria-hidden="true" />
                       <dd className="capitalize">
                         {interview.mode}
                         {interview.venue ? ` - ${interview.venue}` : ''}
@@ -85,7 +85,7 @@ export default function MyInterviewsPage() {
                     </div>
                     {interview.meeting_link && (
                       <div className="flex items-center gap-2">
-                        <Video className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                        <Video className="h-4 w-4 text-navy-400" aria-hidden="true" />
                         <dd>
                           <a
                             href={interview.meeting_link}
@@ -101,13 +101,13 @@ export default function MyInterviewsPage() {
                   </dl>
 
                   {interview.outcome && (
-                    <div className="mt-4 rounded-lg bg-slate-50 px-4 py-3">
-                      <p className="text-xs uppercase tracking-wide text-slate-400">Outcome</p>
+                    <div className="mt-4 rounded-lg bg-navy-50 px-4 py-3">
+                      <p className="text-xs uppercase tracking-wide text-navy-400">Outcome</p>
                       <div className="mt-1">
                         <StatusBadge status={interview.outcome} />
                       </div>
                       {interview.feedback && (
-                        <p className="mt-2 text-sm text-slate-600">{interview.feedback}</p>
+                        <p className="mt-2 text-sm text-navy-600">{interview.feedback}</p>
                       )}
                     </div>
                   )}

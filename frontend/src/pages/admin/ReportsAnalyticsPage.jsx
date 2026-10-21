@@ -178,7 +178,7 @@ export default function ReportsAnalyticsPage() {
           />
           <CardBody>
             {topRecruiters.length === 0 ? (
-              <p className="text-sm text-slate-500">No offers recorded yet.</p>
+              <p className="text-sm text-navy-500">No offers recorded yet.</p>
             ) : (
               <div className="h-72 w-full">
                 <ResponsiveContainer width="100%" height="100%">
@@ -226,9 +226,9 @@ export default function ReportsAnalyticsPage() {
         >
           {departments.map((row) => (
             <Tr key={row.department_id}>
-              <Td className="font-medium text-slate-900">
+              <Td className="font-medium text-navy-900">
                 {row.department_code}
-                <span className="block text-xs font-normal text-slate-400">
+                <span className="block text-xs font-normal text-navy-400">
                   {row.department_name}
                 </span>
               </Td>
@@ -262,8 +262,8 @@ export default function ReportsAnalyticsPage() {
         >
           {companies.map((row) => (
             <Tr key={row.company_id}>
-              <Td className="font-medium text-slate-900">{row.company_name}</Td>
-              <Td className="capitalize text-slate-500">{row.industry.replace(/_/g, ' ')}</Td>
+              <Td className="font-medium text-navy-900">{row.company_name}</Td>
+              <Td className="capitalize text-navy-500">{row.industry.replace(/_/g, ' ')}</Td>
               <Td>{row.drive_count}</Td>
               <Td>{row.applicant_count}</Td>
               <Td>{row.selected_count}</Td>
@@ -291,10 +291,10 @@ export default function ReportsAnalyticsPage() {
         >
           {drives.map((row) => (
             <Tr key={row.drive_id}>
-              <Td className="font-medium text-slate-900">{row.title}</Td>
+              <Td className="font-medium text-navy-900">{row.title}</Td>
               <Td>{row.company}</Td>
-              <Td className="capitalize text-slate-500">{row.status}</Td>
-              <Td className="whitespace-nowrap text-slate-500">{formatDate(row.deadline)}</Td>
+              <Td className="capitalize text-navy-500">{row.status}</Td>
+              <Td className="whitespace-nowrap text-navy-500">{formatDate(row.deadline)}</Td>
               <Td>{row.application_count}</Td>
               <Td>{row.shortlisted_count}</Td>
               <Td>{row.selected_count}</Td>

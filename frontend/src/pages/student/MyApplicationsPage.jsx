@@ -89,7 +89,7 @@ export default function MyApplicationsPage() {
             >
               {applications.map((application) => (
                 <Tr key={application.id}>
-                  <Td className="font-medium text-slate-900">{application.job_drive_title}</Td>
+                  <Td className="font-medium text-navy-900">{application.job_drive_title}</Td>
                   <Td>{application.job_drive_company}</Td>
                   <Td>
                     <StatusBadge status={application.status} />
@@ -100,10 +100,10 @@ export default function MyApplicationsPage() {
                         {formatCurrency(application.offer_package)}
                       </span>
                     ) : (
-                      <span className="text-slate-400">—</span>
+                      <span className="text-navy-400">—</span>
                     )}
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(application.applied_at)}
                   </Td>
                   <Td className="text-right">
@@ -149,22 +149,22 @@ export default function MyApplicationsPage() {
           <div className="space-y-5">
             <dl className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Current status</dt>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Current status</dt>
                 <dd className="mt-1">
                   <StatusBadge status={selected.status} />
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Interviews</dt>
-                <dd className="mt-1 text-slate-700">{selected.interview_count}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Interviews</dt>
+                <dd className="mt-1 text-navy-700">{selected.interview_count}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Last updated</dt>
-                <dd className="mt-1 text-slate-700">{formatDateTime(selected.status_changed_at)}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Last updated</dt>
+                <dd className="mt-1 text-navy-700">{formatDateTime(selected.status_changed_at)}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Offer package</dt>
-                <dd className="mt-1 text-slate-700">
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Offer package</dt>
+                <dd className="mt-1 text-navy-700">
                   {selected.offer_package ? formatCurrency(selected.offer_package) : '—'}
                 </dd>
               </div>
@@ -182,18 +182,18 @@ export default function MyApplicationsPage() {
 
             {selected.eligibility_snapshot && (
               <div>
-                <p className="text-sm font-semibold text-slate-800">
+                <p className="text-sm font-semibold text-navy-800">
                   Eligibility snapshot at submission
                 </p>
                 <dl className="mt-2 grid grid-cols-2 gap-3 text-sm">
                   {Object.entries(selected.eligibility_snapshot)
                     .filter(([, value]) => value !== null && value !== undefined)
                     .map(([key, value]) => (
-                      <div key={key} className="rounded-lg bg-slate-50 px-3 py-2">
-                        <dt className="text-xs uppercase tracking-wide text-slate-400">
+                      <div key={key} className="rounded-lg bg-navy-50 px-3 py-2">
+                        <dt className="text-xs uppercase tracking-wide text-navy-400">
                           {key.replace(/_/g, ' ')}
                         </dt>
-                        <dd className="mt-0.5 text-slate-700">{String(value)}</dd>
+                        <dd className="mt-0.5 text-navy-700">{String(value)}</dd>
                       </div>
                     ))}
                 </dl>
@@ -201,27 +201,27 @@ export default function MyApplicationsPage() {
             )}
 
             <div>
-              <p className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-                <Clock className="h-4 w-4 text-slate-400" aria-hidden="true" />
+              <p className="flex items-center gap-2 text-sm font-semibold text-navy-800">
+                <Clock className="h-4 w-4 text-navy-400" aria-hidden="true" />
                 Status trail
               </p>
               {history.length === 0 ? (
-                <p className="mt-2 text-sm text-slate-500">No history entries yet.</p>
+                <p className="mt-2 text-sm text-navy-500">No history entries yet.</p>
               ) : (
-                <ol className="mt-3 space-y-3 border-l border-slate-200 pl-5">
+                <ol className="mt-3 space-y-3 border-l border-navy-200 pl-5">
                   {history.map((entry) => (
                     <li key={entry.id} className="relative">
                       <span className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full bg-brand-500" />
                       <div className="flex flex-wrap items-center gap-2">
                         <Badge variant="neutral">{humanise(entry.from_status) || 'Created'}</Badge>
-                        <span className="text-slate-400">→</span>
+                        <span className="text-navy-400">→</span>
                         <StatusBadge status={entry.to_status} />
                       </div>
-                      <p className="mt-1 text-xs text-slate-500">
+                      <p className="mt-1 text-xs text-navy-500">
                         {formatDateTime(entry.changed_at)} &middot; {entry.changed_by_name}
                         {entry.changed_by_role ? ` (${entry.changed_by_role})` : ''}
                       </p>
-                      {entry.reason && <p className="mt-0.5 text-sm text-slate-600">{entry.reason}</p>}
+                      {entry.reason && <p className="mt-0.5 text-sm text-navy-600">{entry.reason}</p>}
                     </li>
                   ))}
                 </ol>

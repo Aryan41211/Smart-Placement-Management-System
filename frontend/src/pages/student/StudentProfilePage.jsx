@@ -76,25 +76,25 @@ export default function StudentProfilePage() {
           <CardHeader title="Identity" />
           <CardBody className="space-y-4">
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">Full name</p>
-              <p className="mt-1 font-medium text-slate-900">{data.user.full_name}</p>
+              <p className="text-xs uppercase tracking-wide text-navy-400">Full name</p>
+              <p className="mt-1 font-medium text-navy-900">{data.user.full_name}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">E-mail</p>
-              <p className="mt-1 text-slate-700">{data.user.email}</p>
+              <p className="text-xs uppercase tracking-wide text-navy-400">E-mail</p>
+              <p className="mt-1 text-navy-700">{data.user.email}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">Roll number</p>
-              <p className="mt-1 text-slate-700">{data.roll_number}</p>
+              <p className="text-xs uppercase tracking-wide text-navy-400">Roll number</p>
+              <p className="mt-1 text-navy-700">{data.roll_number}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">Department</p>
-              <p className="mt-1 text-slate-700">
+              <p className="text-xs uppercase tracking-wide text-navy-400">Department</p>
+              <p className="mt-1 text-navy-700">
                 {data.department_name} ({data.department_code})
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">Profile status</p>
+              <p className="text-xs uppercase tracking-wide text-navy-400">Profile status</p>
               <div className="mt-1">
                 <Badge variant={data.is_profile_complete ? 'success' : 'warning'}>
                   {data.is_profile_complete ? 'Complete' : 'Incomplete'}
@@ -102,8 +102,8 @@ export default function StudentProfilePage() {
               </div>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-wide text-slate-400">Last updated</p>
-              <p className="mt-1 text-slate-700">{formatDate(data.updated_at)}</p>
+              <p className="text-xs uppercase tracking-wide text-navy-400">Last updated</p>
+              <p className="mt-1 text-navy-700">{formatDate(data.updated_at)}</p>
             </div>
           </CardBody>
         </Card>

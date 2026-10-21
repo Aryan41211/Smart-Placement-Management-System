@@ -14,7 +14,7 @@ export function RequireAuth({ children }) {
 
   if (status === 'loading') {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-100">
+      <div className="flex min-h-screen items-center justify-center bg-navy-100">
         <LoadingState label="Restoring your session..." />
       </div>
     );

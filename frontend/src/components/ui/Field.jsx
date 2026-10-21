@@ -23,7 +23,7 @@ export const Input = forwardRef(function Input(
       <div className="relative">
         {LeadingIcon && (
           <LeadingIcon
-            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -trannavy-y-1/2 text-navy-400"
             aria-hidden="true"
           />
         )}
@@ -74,7 +74,7 @@ export const Select = forwardRef(function Select(
           {children}
         </select>
         <ChevronDown
-          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400"
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -trannavy-y-1/2 text-navy-400"
           aria-hidden="true"
         />
       </div>

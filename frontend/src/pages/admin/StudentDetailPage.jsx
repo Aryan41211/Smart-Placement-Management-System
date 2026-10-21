@@ -94,7 +94,7 @@ export default function StudentDetailPage() {
             description="Skills used by the eligibility engine when a drive lists requirements."
           />
           {skillRows.length === 0 ? (
-            <CardBody className="text-sm text-slate-500">No skills listed.</CardBody>
+            <CardBody className="text-sm text-navy-500">No skills listed.</CardBody>
           ) : (
             <Table
               columns={[
@@ -105,7 +105,7 @@ export default function StudentDetailPage() {
             >
               {skillRows.map((row) => (
                 <Tr key={row.id}>
-                  <Td className="font-medium text-slate-900">{row.skill_name}</Td>
+                  <Td className="font-medium text-navy-900">{row.skill_name}</Td>
                   <Td>{row.proficiency_level}/5</Td>
                   <Td>
                     {row.is_certified ? (
@@ -127,8 +127,8 @@ export default function StudentDetailPage() {
           description="Deactivating a student blocks new sign-ins without deleting the academic record."
         />
         <CardBody className="flex flex-wrap items-center gap-3">
-          <p className="flex items-center gap-2 text-sm text-slate-600">
-            <ShieldCheck className="h-4 w-4 text-slate-400" aria-hidden="true" />
+          <p className="flex items-center gap-2 text-sm text-navy-600">
+            <ShieldCheck className="h-4 w-4 text-navy-400" aria-hidden="true" />
             Every control action is written to the audit trail.
           </p>
           <div className="ml-auto flex gap-2">
@@ -148,7 +148,7 @@ export default function StudentDetailPage() {
         </CardBody>
       </Card>
 
-      <p className="mt-4 text-xs text-slate-400">
+      <p className="mt-4 text-xs text-navy-400">
         Record created {formatDateTime(data.created_at)}.
       </p>
     </>
@@ -159,8 +159,8 @@ export default function StudentDetailPage() {
 function Row({ label, value }) {
   return (
     <div className="flex items-start justify-between gap-4">
-      <dt className="text-xs uppercase tracking-wide text-slate-400">{label}</dt>
-      <dd className="text-right text-slate-700">{value}</dd>
+      <dt className="text-xs uppercase tracking-wide text-navy-400">{label}</dt>
+      <dd className="text-right text-navy-700">{value}</dd>
     </div>
   );
 }

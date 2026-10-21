@@ -76,7 +76,7 @@ export default function RecruiterCompanyPage() {
               value={
                 data?.location ? (
                   <span className="inline-flex items-center gap-1.5">
-                    <MapPin className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    <MapPin className="h-3.5 w-3.5 text-navy-400" aria-hidden="true" />
                     {data.location}
                   </span>
                 ) : (
@@ -107,7 +107,7 @@ export default function RecruiterCompanyPage() {
               value={
                 data?.hr_contact_email ? (
                   <span className="inline-flex items-center gap-1.5">
-                    <Mail className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    <Mail className="h-3.5 w-3.5 text-navy-400" aria-hidden="true" />
                     {data.hr_contact_email}
                   </span>
                 ) : (
@@ -120,7 +120,7 @@ export default function RecruiterCompanyPage() {
               value={
                 data?.hr_contact_phone ? (
                   <span className="inline-flex items-center gap-1.5">
-                    <Phone className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    <Phone className="h-3.5 w-3.5 text-navy-400" aria-hidden="true" />
                     {data.hr_contact_phone}
                   </span>
                 ) : (
@@ -150,7 +150,7 @@ export default function RecruiterCompanyPage() {
               ) : (
                 <ShieldOff className="h-4 w-4 text-amber-600" aria-hidden="true" />
               )}
-              <span className="text-slate-700">
+              <span className="text-navy-700">
                 {profile.is_authorized
                   ? 'You can create drives and manage applicants for this company.'
                   : 'You can browse drives, but creating drives is disabled until approved.'}
@@ -162,7 +162,7 @@ export default function RecruiterCompanyPage() {
             />
             <Row label="Designation" value={profile.designation || '—'} />
             <Row label="Contact phone" value={profile.phone || '—'} />
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-navy-400">
               Company details are maintained by the placement cell. Contact them to update the
               profile.
             </p>
@@ -176,7 +176,7 @@ export default function RecruiterCompanyPage() {
           description="Every drive published under this company, newest first."
         />
         {driveRows.length === 0 ? (
-          <CardBody className="text-sm text-slate-500">No drives created yet.</CardBody>
+          <CardBody className="text-sm text-navy-500">No drives created yet.</CardBody>
         ) : (
           <Table
             columns={[
@@ -188,8 +188,8 @@ export default function RecruiterCompanyPage() {
           >
             {driveRows.map((drive) => (
               <Tr key={drive.id}>
-                <Td className="font-medium text-slate-900">{drive.title}</Td>
-                <Td className="text-slate-500">{drive.role_designation}</Td>
+                <Td className="font-medium text-navy-900">{drive.title}</Td>
+                <Td className="text-navy-500">{drive.role_designation}</Td>
                 <Td>
                   <StatusBadge status={drive.status} />
                 </Td>
@@ -207,8 +207,8 @@ export default function RecruiterCompanyPage() {
 function Row({ label, value }) {
   return (
     <div className="flex items-start justify-between gap-4">
-      <dt className="text-xs uppercase tracking-wide text-slate-400">{label}</dt>
-      <dd className="text-right capitalize text-slate-700">{value}</dd>
+      <dt className="text-xs uppercase tracking-wide text-navy-400">{label}</dt>
+      <dd className="text-right capitalize text-navy-700">{value}</dd>
     </div>
   );
 }

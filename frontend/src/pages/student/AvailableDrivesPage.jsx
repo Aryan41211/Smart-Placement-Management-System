@@ -118,22 +118,22 @@ export default function AvailableDrivesPage() {
             <CardBody className="flex flex-1 flex-col">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <h3 className="truncate text-base font-semibold text-slate-900">{drive.title}</h3>
-                  <p className="truncate text-sm text-slate-500">{drive.company_name}</p>
+                  <h3 className="truncate text-base font-semibold text-navy-900">{drive.title}</h3>
+                  <p className="truncate text-sm text-navy-500">{drive.company_name}</p>
                 </div>
                 <StatusBadge status={drive.status} />
               </div>
 
-              <dl className="mt-4 space-y-2 text-sm text-slate-600">
+              <dl className="mt-4 space-y-2 text-sm text-navy-600">
                 <div className="flex items-center gap-2">
-                  <IndianRupee className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                  <IndianRupee className="h-4 w-4 text-navy-400" aria-hidden="true" />
                   <dd>
                     {formatCurrency(drive.package_min, { compact: true })} -{' '}
                     {formatCurrency(drive.package_max, { compact: true })}
                   </dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                  <CalendarDays className="h-4 w-4 text-navy-400" aria-hidden="true" />
                   <dd>
                     Closes {formatDateTime(drive.application_deadline)}
                     {drive.days_to_deadline !== null && drive.days_to_deadline >= 0
@@ -142,7 +142,7 @@ export default function AvailableDrivesPage() {
                   </dd>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                  <MapPin className="h-4 w-4 text-navy-400" aria-hidden="true" />
                   <dd className="capitalize">{drive.drive_mode}</dd>
                 </div>
               </dl>
@@ -156,7 +156,7 @@ export default function AvailableDrivesPage() {
                     </Badge>
                   ))
                 ) : (
-                  <span className="text-xs text-slate-400">No specific skill requirements</span>
+                  <span className="text-xs text-navy-400">No specific skill requirements</span>
                 )}
               </div>
 
@@ -215,47 +215,47 @@ export default function AvailableDrivesPage() {
         {selected && (
           <div className="space-y-4">
             {selected.description && (
-              <p className="text-sm leading-relaxed text-slate-600">{selected.description}</p>
+              <p className="text-sm leading-relaxed text-navy-600">{selected.description}</p>
             )}
 
             <dl className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Package</dt>
-                <dd className="mt-1 text-slate-800">
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Package</dt>
+                <dd className="mt-1 text-navy-800">
                   {formatCurrency(selected.package_min)} - {formatCurrency(selected.package_max)}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Job type</dt>
-                <dd className="mt-1 capitalize text-slate-800">{selected.job_type}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Job type</dt>
+                <dd className="mt-1 capitalize text-navy-800">{selected.job_type}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Minimum CGPA</dt>
-                <dd className="mt-1 text-slate-800">{selected.min_cgpa ?? 'No restriction'}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Minimum CGPA</dt>
+                <dd className="mt-1 text-navy-800">{selected.min_cgpa ?? 'No restriction'}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Backlogs allowed</dt>
-                <dd className="mt-1 text-slate-800">
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Backlogs allowed</dt>
+                <dd className="mt-1 text-navy-800">
                   {selected.max_active_backlogs ?? 'Not considered'}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Departments</dt>
-                <dd className="mt-1 text-slate-800">
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Departments</dt>
+                <dd className="mt-1 text-navy-800">
                   {selected.allowed_department_names?.length
                     ? selected.allowed_department_names.join(', ')
                     : 'Open to all departments'}
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wide text-slate-400">Applications</dt>
-                <dd className="mt-1 text-slate-800">{selected.application_count}</dd>
+                <dt className="text-xs uppercase tracking-wide text-navy-400">Applications</dt>
+                <dd className="mt-1 text-navy-800">{selected.application_count}</dd>
               </div>
             </dl>
 
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-800">Eligibility verdict</p>
-              {!eligibility && <p className="mt-1 text-sm text-slate-500">Evaluating...</p>}
+            <div className="rounded-lg border border-navy-200 bg-navy-50 p-4">
+              <p className="text-sm font-semibold text-navy-800">Eligibility verdict</p>
+              {!eligibility && <p className="mt-1 text-sm text-navy-500">Evaluating...</p>}
               {eligibility && (
                 <>
                   <div className="mt-2 flex items-center gap-2">
@@ -276,14 +276,14 @@ export default function AvailableDrivesPage() {
                     )}
                   </div>
                   {eligibility.messages?.length > 0 && (
-                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-600">
+                    <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-navy-600">
                       {eligibility.messages.map((message) => (
                         <li key={message}>{message}</li>
                       ))}
                     </ul>
                   )}
                   {eligibility.reasons?.length > 0 && (
-                    <p className="mt-3 text-xs text-slate-400">
+                    <p className="mt-3 text-xs text-navy-400">
                       Reason codes: {eligibility.reasons.join(', ')}
                     </p>
                   )}

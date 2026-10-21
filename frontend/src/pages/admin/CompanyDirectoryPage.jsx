@@ -201,13 +201,13 @@ export default function CompanyDirectoryPage() {
             >
               {rows.map((company) => (
                 <Tr key={company.id}>
-                  <Td className="font-medium text-slate-900">{company.name}</Td>
+                  <Td className="font-medium text-navy-900">{company.name}</Td>
                   <Td className="capitalize">{company.industry.replace(/_/g, ' ')}</Td>
-                  <Td className="text-slate-500">{company.location || '—'}</Td>
-                  <Td className="text-slate-500">
+                  <Td className="text-navy-500">{company.location || '—'}</Td>
+                  <Td className="text-navy-500">
                     {company.hr_contact_email ? (
                       <span className="flex items-center gap-1.5">
-                        <Mail className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                        <Mail className="h-3.5 w-3.5 text-navy-400" aria-hidden="true" />
                         {company.hr_contact_email}
                       </span>
                     ) : (

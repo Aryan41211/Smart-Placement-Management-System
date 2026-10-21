@@ -82,14 +82,14 @@ export default function EligibilityCheckerPage() {
             </form>
 
             {selected && (
-              <div className="mt-6 space-y-2 rounded-lg bg-slate-50 p-4 text-sm">
-                <p className="font-medium text-slate-800">{selected.title}</p>
-                <p className="text-slate-600">{selected.company_name}</p>
-                <p className="text-slate-500">
+              <div className="mt-6 space-y-2 rounded-lg bg-navy-50 p-4 text-sm">
+                <p className="font-medium text-navy-800">{selected.title}</p>
+                <p className="text-navy-600">{selected.company_name}</p>
+                <p className="text-navy-500">
                   Package {formatCurrency(selected.package_min, { compact: true })} -{' '}
                   {formatCurrency(selected.package_max, { compact: true })}
                 </p>
-                <p className="text-slate-500">
+                <p className="text-navy-500">
                   Minimum CGPA {selected.min_cgpa ?? 'none'} &middot; Backlogs allowed{' '}
                   {selected.max_active_backlogs ?? 'not considered'}
                 </p>
@@ -106,8 +106,8 @@ export default function EligibilityCheckerPage() {
 
             {!loading && !error && !result && (
               <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
-                <ShieldCheck className="h-8 w-8 text-slate-300" aria-hidden="true" />
-                <p className="text-sm text-slate-500">
+                <ShieldCheck className="h-8 w-8 text-navy-300" aria-hidden="true" />
+                <p className="text-sm text-navy-500">
                   Select a drive and run the check to see the server side verdict.
                 </p>
               </div>
@@ -140,10 +140,10 @@ export default function EligibilityCheckerPage() {
 
                 {result.messages?.length > 0 && (
                   <div>
-                    <p className="text-sm font-semibold text-slate-800">What the engine checked</p>
+                    <p className="text-sm font-semibold text-navy-800">What the engine checked</p>
                     <ul className="mt-2 space-y-2">
                       {result.messages.map((message) => (
-                        <li key={message} className="flex gap-2 text-sm text-slate-600">
+                        <li key={message} className="flex gap-2 text-sm text-navy-600">
                           <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-500" aria-hidden="true" />
                           {message}
                         </li>
@@ -161,7 +161,7 @@ export default function EligibilityCheckerPage() {
 
                 {result.reasons?.length > 0 && (
                   <div>
-                    <p className="text-sm font-semibold text-slate-800">Reason codes</p>
+                    <p className="text-sm font-semibold text-navy-800">Reason codes</p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {result.reasons.map((reason) => (
                         <Badge key={reason} variant="danger">
@@ -174,14 +174,14 @@ export default function EligibilityCheckerPage() {
 
                 {result.details && Object.keys(result.details).length > 0 && (
                   <div>
-                    <p className="text-sm font-semibold text-slate-800">Evaluation details</p>
+                    <p className="text-sm font-semibold text-navy-800">Evaluation details</p>
                     <dl className="mt-2 grid grid-cols-2 gap-3 text-sm">
                       {Object.entries(result.details).map(([key, value]) => (
-                        <div key={key} className="rounded-lg bg-slate-50 px-3 py-2">
-                          <dt className="text-xs uppercase tracking-wide text-slate-400">
+                        <div key={key} className="rounded-lg bg-navy-50 px-3 py-2">
+                          <dt className="text-xs uppercase tracking-wide text-navy-400">
                             {key.replace(/_/g, ' ')}
                           </dt>
-                          <dd className="mt-0.5 break-words text-slate-700">
+                          <dd className="mt-0.5 break-words text-navy-700">
                             {Array.isArray(value) ? value.join(', ') || 'none' : String(value)}
                           </dd>
                         </div>

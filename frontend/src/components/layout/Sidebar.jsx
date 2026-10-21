@@ -23,8 +23,8 @@ export default function Sidebar({ open, onClose }) {
         />
       )}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[17rem] flex-col bg-navy-950 transition-transform duration-300 ease-smooth lg:static lg:translate-x-0 ${
-          open ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed inset-y-0 left-0 z-40 flex w-[17rem] flex-col bg-navy-950 transition-transform duration-300 ease-smooth lg:static lg:trannavy-x-0 ${
+          open ? 'trannavy-x-0' : '-trannavy-x-full'
         }`}
       >
         {/* Brand */}
@@ -74,7 +74,7 @@ export default function Sidebar({ open, onClose }) {
                         {({ isActive }) => (
                           <>
                             <span
-                              className={`absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-brand-400 transition-opacity duration-200 ${
+                              className={`absolute left-0 top-1/2 h-5 w-[3px] -trannavy-y-1/2 rounded-r-full bg-brand-400 transition-opacity duration-200 ${
                                 isActive ? 'opacity-100' : 'opacity-0'
                               }`}
                               aria-hidden="true"

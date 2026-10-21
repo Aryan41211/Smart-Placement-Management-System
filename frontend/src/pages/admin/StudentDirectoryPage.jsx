@@ -144,8 +144,8 @@ export default function StudentDirectoryPage() {
             aria-label="Maximum CGPA"
           />
         </div>
-        <div className="flex items-center justify-between border-t border-slate-200 px-4 py-2">
-          <p className="text-xs text-slate-500">
+        <div className="flex items-center justify-between border-t border-navy-200 px-4 py-2">
+          <p className="text-xs text-navy-500">
             <Filter className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />
             {data?.count ?? 0} student(s) matched
           </p>
@@ -182,14 +182,14 @@ export default function StudentDirectoryPage() {
             >
               {rows.map((student) => (
                 <Tr key={student.id}>
-                  <Td className="font-mono text-xs text-slate-500">{student.roll_number}</Td>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-mono text-xs text-navy-500">{student.roll_number}</Td>
+                  <Td className="font-medium text-navy-900">
                     {student.full_name}
-                    <span className="block text-xs font-normal text-slate-400">{student.email}</span>
+                    <span className="block text-xs font-normal text-navy-400">{student.email}</span>
                   </Td>
                   <Td>
                     {student.department_code}
-                    <span className="block text-xs text-slate-400">{student.department_name}</span>
+                    <span className="block text-xs text-navy-400">{student.department_name}</span>
                   </Td>
                   <Td>{student.cgpa}</Td>
                   <Td>{student.active_backlogs}</Td>

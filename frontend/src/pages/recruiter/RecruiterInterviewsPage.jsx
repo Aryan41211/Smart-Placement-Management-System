@@ -195,25 +195,25 @@ export default function RecruiterInterviewsPage() {
             >
               {rows.map((interview) => (
                 <Tr key={interview.id}>
-                  <Td className="font-medium text-slate-900">
+                  <Td className="font-medium text-navy-900">
                     {interview.student_name}
-                    <span className="block font-mono text-xs font-normal text-slate-400">
+                    <span className="block font-mono text-xs font-normal text-navy-400">
                       {interview.student_roll_number}
                     </span>
                   </Td>
                   <Td>
                     {interview.round_name}
-                    <span className="block text-xs text-slate-400">
+                    <span className="block text-xs text-navy-400">
                       {interview.job_drive_title}
                     </span>
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(interview.scheduled_at)}
                   </Td>
-                  <Td className="capitalize text-slate-500">
+                  <Td className="capitalize text-navy-500">
                     {interview.mode}
                     {interview.mode === 'offline' && interview.venue && (
-                      <span className="block text-xs text-slate-400">{interview.venue}</span>
+                      <span className="block text-xs text-navy-400">{interview.venue}</span>
                     )}
                   </Td>
                   <Td>
@@ -426,7 +426,7 @@ export default function RecruiterInterviewsPage() {
           />
 
           {outcomeTarget && (
-            <div className="flex flex-wrap items-center gap-2 rounded-lg bg-slate-50 px-4 py-3 text-xs text-slate-500">
+            <div className="flex flex-wrap items-center gap-2 rounded-lg bg-navy-50 px-4 py-3 text-xs text-navy-500">
               <Badge variant="neutral">Current</Badge>
               <StatusBadge status={outcomeTarget.status} />
               <StatusBadge status={outcomeTarget.outcome} />

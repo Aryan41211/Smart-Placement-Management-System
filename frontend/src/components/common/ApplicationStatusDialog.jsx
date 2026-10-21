@@ -68,13 +68,13 @@ export default function ApplicationStatusDialog({
     >
       {application && (
         <div className="space-y-4">
-          <div className="flex items-center gap-2 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-600">
-            <span className="text-xs uppercase tracking-wide text-slate-400">Current</span>
+          <div className="flex items-center gap-2 rounded-lg bg-navy-50 px-4 py-3 text-sm text-navy-600">
+            <span className="text-xs uppercase tracking-wide text-navy-400">Current</span>
             <StatusBadge status={application.status} />
           </div>
 
           {options.length === 0 ? (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-navy-500">
               This application has reached a terminal state and cannot be moved any further.
             </p>
           ) : (

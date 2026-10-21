@@ -76,7 +76,7 @@ export default function AuditTrailPage() {
         title="Audit trail"
         description="An immutable record of every administrative action, published drive and pipeline change."
         actions={
-          <span className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1.5 text-xs text-slate-600">
+          <span className="inline-flex items-center gap-2 rounded-lg bg-navy-100 px-3 py-1.5 text-xs text-navy-600">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             Read-only
           </span>
@@ -144,21 +144,21 @@ export default function AuditTrailPage() {
             >
               {rows.map((row) => (
                 <Tr key={row.id}>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(row.created_at)}
                   </Td>
-                  <Td className="text-slate-600">{row.actor_email || 'system'}</Td>
+                  <Td className="text-navy-600">{row.actor_email || 'system'}</Td>
                   <Td>
                     <Badge variant={ACTION_TONES[row.action] ?? 'neutral'}>
                       {humanise(row.action)}
                     </Badge>
                   </Td>
-                  <Td className="text-xs text-slate-500">
+                  <Td className="text-xs text-navy-500">
                     {row.entity_type}
-                    <span className="block font-mono text-slate-400">#{row.entity_id}</span>
+                    <span className="block font-mono text-navy-400">#{row.entity_id}</span>
                   </Td>
-                  <Td className="max-w-md text-slate-600">{row.description}</Td>
-                  <Td className="font-mono text-xs text-slate-400">{row.ip_address || '—'}</Td>
+                  <Td className="max-w-md text-navy-600">{row.description}</Td>
+                  <Td className="font-mono text-xs text-navy-400">{row.ip_address || '—'}</Td>
                 </Tr>
               ))}
             </Table>
@@ -172,7 +172,7 @@ export default function AuditTrailPage() {
         </Card>
       )}
 
-      <p className="mt-4 text-xs text-slate-400">
+      <p className="mt-4 text-xs text-navy-400">
         <Button variant="ghost" size="sm" onClick={reload}>
           Refresh
         </Button>

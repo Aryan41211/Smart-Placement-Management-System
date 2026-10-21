@@ -35,7 +35,7 @@ export default function ConfirmDialog({
         </>
       }
     >
-      <p className="text-sm text-slate-600">
+      <p className="text-sm text-navy-600">
         This action is recorded in the audit trail and cannot be undone from the interface.
       </p>
     </Modal>

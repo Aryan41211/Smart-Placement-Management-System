@@ -146,12 +146,12 @@ export default function StudentDashboardPage() {
             >
               {rows.slice(0, 5).map((row) => (
                 <Tr key={row.id}>
-                  <Td className="font-medium text-slate-900">{row.job_drive_title}</Td>
+                  <Td className="font-medium text-navy-900">{row.job_drive_title}</Td>
                   <Td>{row.job_drive_company}</Td>
                   <Td>
                     <StatusBadge status={row.status} />
                   </Td>
-                  <Td className="whitespace-nowrap text-slate-500">
+                  <Td className="whitespace-nowrap text-navy-500">
                     {formatDateTime(row.applied_at)}
                   </Td>
                 </Tr>
