@@ -118,11 +118,8 @@ export const reportApi = {
   drives: () => api.get('/reports/drives/').then(unwrap),
   exports: () => api.get('/reports/export/').then(unwrap),
   auditLogs: (params) => api.get('/audit-logs/', { params }).then(unwrap),
-  download: (kind, params) =>
-    downloadCsv(
-      `/reports/export/${kind}/`,
-      `${kind}.csv`,
-    ),
+  download: (kind, filename, params) =>
+    downloadCsv(`/reports/export/${kind}/`, filename || `${kind}.csv`, params),
 };
 
 /* ------------------------------------------------------------------ health */
