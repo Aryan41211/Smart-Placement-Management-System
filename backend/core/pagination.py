@@ -1,0 +1,47 @@
+"""Shared pagination classes for the placement API."""
+
+from __future__ import annotations
+
+from collections import OrderedDict
+
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    """Page-number pagination with a client-selectable page size.
+
+    The response envelope is stable so the React client can consume it with a
+    single helper::
+
+        {
+          "count": 137,
+          "page": 1,
+          "pages": 7,
+          "page_size": 20,
+          "next": "http://.../?page=2",
+          "previous": null,
+          "results": [...]
+        }
+    """
+
+    page_size = 20
+    page_size_query_param = "page_size"
+    max_page_size = 100
+    page_query_param = "page"
+
+    def get_paginated_response(self, data) -> Response:
+        """Return the paginated payload using the documented envelope."""
+        return Response(
+            OrderedDict(
+                [
+                    ("count", self.page.paginator.count),
+                    ("page", self.page.number),
+                    ("pages", self.page.paginator.num_pages),
+                    ("page_size", self.get_page_size(self.request)),
+                    ("next", self.get_next_link()),
+                    ("previous", self.get_previous_link()),
+                    ("results", data),
+                ]
+            )
+        )
