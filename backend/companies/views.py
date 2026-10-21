@@ -16,13 +16,17 @@ from companies.serializers import (
     RecruiterSerializer,
 )
 from core.audit import record_audit
-from core.permissions import IsAdmin
+from core.permissions import IsAdmin, IsAdminOrReadOnly
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    """Browse and manage the participating companies."""
+    """Browse and manage the participating companies.
 
-    permission_classes = [IsAuthenticated]
+    Every authenticated account may read the directory; only placement
+    officers may create, edit or deactivate a company record.
+    """
+
+    permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
     filterset_fields = ["industry", "is_active"]
     ordering_fields = ["name", "created_at", "location"]
     ordering = ["name"]
