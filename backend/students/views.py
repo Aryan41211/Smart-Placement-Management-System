@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from django.db.models import Count, Exists, OuterRef, Q
 from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.generics import ListAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -13,6 +14,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from accounts.models import StudentProfile
 from applications.models import Application
+from core.audit import record_audit
 from core.permissions import IsAdmin, IsOwnerOrAdmin, IsStudent
 from students.models import Department
 from students.serializers import (
@@ -172,3 +174,57 @@ class StudentSkillListView(ListAPIView):
             .select_related("skill")
             .order_by("-proficiency_level", "skill__name")
         )
+
+
+class StudentManagementView(APIView):
+    """``GET /api/v1/students/:id/`` - detail view for placement officers.
+
+    ``POST /api/v1/students/:id/deactivate/`` and
+    ``POST /api/v1/students/:id/activate/`` toggle the account state.
+    """
+
+    permission_classes = [IsAuthenticated, IsAdmin]
+
+    def _get_profile(self, pk: int) -> StudentProfile:
+        """Return the requested student profile or raise ``Http404``."""
+        return get_object_or_404(
+            StudentProfile.objects.select_related("user", "department"), pk=pk
+        )
+
+    def get(self, request, pk, *args, **kwargs):
+        """Return a single student record."""
+        profile = self._get_profile(pk)
+        return Response(StudentDirectorySerializer(profile).data, status=status.HTTP_200_OK)
+
+    def _set_active(self, request, pk, is_active: bool, action: str):
+        """Activate or deactivate the student's account."""
+        profile = self._get_profile(pk)
+        profile.user.is_active = is_active
+        profile.user.save(update_fields=["is_active"])
+        record_audit(
+            actor=request.user,
+            action=action,
+            entity_type="User",
+            entity_id=profile.user_id,
+            description=(
+                f"Account for {profile.roll_number} "
+                f"{'activated' if is_active else 'deactivated'}"
+            ),
+            request=request,
+        )
+        return Response(StudentDirectorySerializer(profile).data, status=status.HTTP_200_OK)
+
+    def post(self, request, pk, *args, **kwargs):
+        """Activate or deactivate the student's account."""
+        action = request.data.get("action", "deactivate")
+        if action not in {"activate", "deactivate"}:
+            return Response(
+                {
+                    "error": {
+                        "code": "validation_error",
+                        "message": "Action must be either 'activate' or 'deactivate'.",
+                    }
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return self._set_active(request, pk, action == "activate", action)

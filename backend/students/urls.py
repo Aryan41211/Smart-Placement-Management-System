@@ -21,4 +21,5 @@ urlpatterns = [
         name="my-skill-detail",
     ),
     path("<int:student_id>/skills/", views.StudentSkillListView.as_view(), name="student-skills"),
+    path("<int:pk>/", views.StudentManagementView.as_view(), name="student-detail"),
 ]
