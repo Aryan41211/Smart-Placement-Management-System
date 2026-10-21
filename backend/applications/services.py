@@ -27,6 +27,7 @@ from rest_framework.exceptions import PermissionDenied, ValidationError
 from applications.models import Application, ApplicationStatusHistory
 from notifications.models import Notification
 from notifications.services import notify
+from placements.models import JobDrive
 
 #: Allowed forward transitions of the recruitment pipeline.
 ALLOWED_TRANSITIONS: dict[str, set[str]] = {
