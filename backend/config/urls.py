@@ -1,23 +1,58 @@
-"""
-URL configuration for config project.
+"""Root URL configuration.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+All application APIs are versioned under ``/api/v1/``.
 """
+
+from __future__ import annotations
 
 from django.contrib import admin
-from django.urls import path
+from django.http import JsonResponse
+from django.urls import include, path
+
+
+def api_root(request):
+    """Return a short description of the available API namespaces."""
+    return JsonResponse(
+        {
+            "service": "Smart Placement Management System",
+            "version": "v1",
+            "endpoints": [
+                "api/v1/health/",
+                "api/v1/auth/",
+                "api/v1/students/",
+                "api/v1/skills/",
+                "api/v1/companies/",
+                "api/v1/recruiters/",
+                "api/v1/drives/",
+                "api/v1/applications/",
+                "api/v1/my-applications/",
+                "api/v1/application-summary/",
+                "api/v1/rounds/",
+                "api/v1/interviews/",
+                "api/v1/my-interviews/",
+                "api/v1/notifications/",
+                "api/v1/dashboard/",
+                "api/v1/analytics/",
+                "api/v1/reports/",
+                "api/v1/audit-logs/",
+            ],
+        }
+    )
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/health/", include("core.urls")),
+    path("api/v1/auth/", include("accounts.urls")),
+    path("api/v1/students/", include("students.urls")),
+    path("api/v1/skills/", include("students.skills_urls")),
+    path("api/v1/", include("companies.urls")),
+    path("api/v1/", include("companies.recruiters_urls")),
+    path("api/v1/", include("placements.urls")),
+    path("api/v1/", include("applications.urls")),
+    path("api/v1/", include("interviews.rounds_urls")),
+    path("api/v1/", include("interviews.urls")),
+    path("api/v1/", include("notifications.urls")),
+    path("api/v1/", include("reports.urls")),
+    path("api/", api_root, name="api-root"),
 ]
