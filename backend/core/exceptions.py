@@ -22,8 +22,18 @@ from django.core.exceptions import PermissionDenied, ValidationError as DjangoVa
 from django.db import IntegrityError
 from django.http import Http404
 from rest_framework import status
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework.views import exception_handler as drf_exception_handler
+
+try:  # pragma: no cover - the dependency is always installed
+    from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+except Exception:  # pragma: no cover
+    class InvalidToken(Exception):  # type: ignore[no-redef]
+        """Fallback when simplejwt is unavailable."""
+
+    class TokenError(Exception):  # type: ignore[no-redef]
+        """Fallback when simplejwt is unavailable."""
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +58,21 @@ def _envelope(code: str, message: str, details=None) -> dict:
 
 def api_exception_handler(exc, context):
     """DRF exception handler producing a consistent error envelope."""
+    if isinstance(exc, (InvalidToken, TokenError)):
+        return Response(
+            _envelope(
+                "token_error",
+                "The supplied token is invalid, expired or has been revoked.",
+            ),
+            status=status.HTTP_401_UNAUTHORIZED,
+        )
+
+    if isinstance(exc, AuthenticationFailed):
+        return Response(
+            _envelope("authentication_failed", str(exc.detail)),
+            status=status.HTTP_401_UNAUTHORIZED,
+        )
+
     if isinstance(exc, Http404):
         exc = None
         return Response(
