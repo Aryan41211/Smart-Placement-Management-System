@@ -156,18 +156,30 @@ class JobDriveWriteSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        """Create the drive together with its skill requirements."""
+        """Create the drive together with its departments and skill requirements.
+
+        ``allowed_departments`` is a many-to-many relation, so it must be
+        removed from the keyword arguments passed to ``objects.create()`` and
+        set on the instance afterwards - assigning it directly raises
+        ``TypeError``.
+        """
+        departments = validated_data.pop("allowed_departments", [])
         skills = validated_data.pop("required_skills", [])
         drive = JobDrive.objects.create(**validated_data)
+        if departments:
+            drive.allowed_departments.set(departments)
         self._save_skills(drive, skills)
         return drive
 
     def update(self, instance, validated_data):
-        """Update the drive and synchronise its skill requirements."""
+        """Update the drive and synchronise its departments and skills."""
+        departments = validated_data.pop("allowed_departments", None)
         skills = validated_data.pop("required_skills", None)
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
+        if departments is not None:
+            instance.allowed_departments.set(departments)
         if skills is not None:
             instance.required_skills.all().delete()
             self._save_skills(instance, skills)

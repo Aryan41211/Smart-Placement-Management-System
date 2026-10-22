@@ -22,7 +22,7 @@ from django.core.exceptions import PermissionDenied, ValidationError as DjangoVa
 from django.db import IntegrityError
 from django.http import Http404
 from rest_framework import status
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed, ValidationError as DRFValidationError
 from rest_framework.response import Response
 from rest_framework.views import exception_handler as drf_exception_handler
 
@@ -86,6 +86,18 @@ def api_exception_handler(exc, context):
                 "validation_error",
                 DEFAULT_MESSAGES[status.HTTP_400_BAD_REQUEST],
                 details=getattr(exc, "message_dict", None) or {"detail": list(exc.messages)},
+            ),
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    if isinstance(exc, DRFValidationError):
+        """Serializer validation errors use the canonical ``validation_error`` code."""
+        details = exc.detail if isinstance(exc.detail, (dict, list)) else {"detail": exc.detail}
+        return Response(
+            _envelope(
+                "validation_error",
+                DEFAULT_MESSAGES[status.HTTP_400_BAD_REQUEST],
+                details=details,
             ),
             status=status.HTTP_400_BAD_REQUEST,
         )
